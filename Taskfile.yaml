@@ -1,0 +1,12 @@
+version: 3
+
+tasks:
+  default:
+    desc: list all
+    cmds:
+      - task --list-all
+
+  test:
+    desc: test runner
+    cmds:
+      - go test -v -count 1 {{.CLI_ARGS}}
