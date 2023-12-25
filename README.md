@@ -5,7 +5,7 @@ The **SDK Package** is a lightweight and modular utility library for Golang, des
 ## TOC
 
 1. [Installation](#installation)
-1. [Additional Packages](#additional-packages)
+1. [See Also](#see-also)
 1. [Contribution](#contribution)
 1. [License](#license)
 
@@ -17,7 +17,7 @@ To use this prelude package in your Golang project, you can simply run:
 go get -u github.com/adoublef/prelude
 ```
 
-## Additional Packages
+## See Also
 
 - [matryer/is](https://github.com/matryer/is) - Package is provides a lightweight extension to the standard library's testing capabilities.
 - [samber/lo](https://github.com/samber/lo) - A Lodash-style Go library.
