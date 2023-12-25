@@ -1,9 +1,6 @@
-<center>
-    <img height="200" src="https://golang.org/doc/gopher/gopherbw.png" alt="Gopher logo">
-    <h1>Prelude</h1>
-</center>
+# SDK
 
-The **Prelude Package** is a lightweight and modular utility library for Golang, designed to provide a set of common functions and tools to kickstart your Golang projects. It's not meant to be an extensive framework but rather a collection of useful helpers that can be used as a prelude to your Golang code.
+The **SDK Package** is a lightweight and modular utility library for Golang, designed to provide a set of common functions and tools to kickstart your Golang projects. It's not meant to be an extensive framework but rather a collection of useful helpers that can be used as a prelude to your Golang code.
 
 ## Installation
 
