@@ -1,6 +1,6 @@
 # SDK
 
-The **SDK Package** is a lightweight and modular utility library for Golang, designed to provide a set of common functions and tools to kickstart your Golang projects. It's not meant to be an extensive framework but rather a collection of useful helpers that can be used as a prelude to your Golang code.
+The **SDK Package** is a lightweight and modular utility library for Golang, designed to provide a set of common functions and tools to kickstart your Golang projects. It's not meant to be an extensive framework but rather a collection of useful helpers that can be used as an SDK to your Golang code.
 
 ## TOC
 
@@ -11,10 +11,10 @@ The **SDK Package** is a lightweight and modular utility library for Golang, des
 
 ## Installation
 
-To use this prelude package in your Golang project, you can simply run:
+To use this SDK package in your Golang project, you can simply run:
 
 ```bash
-go get -u github.com/adoublef/prelude
+go get -u github.com/adoublef/sdk@latest
 ```
 
 ## See Also
