@@ -28,10 +28,10 @@ go get -u github.com/adoublef/sdk@latest
 Contributions are welcome! If you have any ideas, bug fixes, or improvements, feel free to open an issue or submit a pull request.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Open a pull request
+1. Create your feature branch (`git checkout -b feature/new-feature`)
+1. Commit your changes (`git commit -m 'Add new feature'`)
+1. Push to the branch (`git push origin feature/new-feature`)
+1. Open a pull request
 
 ## License
 
