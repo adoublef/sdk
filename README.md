@@ -7,6 +7,7 @@ The **SDK Package** is a lightweight and modular utility library for Golang, des
 1. [Installation](#installation)
 1. [Additional Packages](#additional-packages)
 1. [Contribution](#contribution)
+1. [License](#license)
 
 ## Installation
 
