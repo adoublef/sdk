@@ -1,5 +1,12 @@
 # SDK
 
+[![License Apache 2][License-Image]][License-Url] [![GoDoc][GoDoc-Image]][GoDoc-Url]
+
+[License-Url]: https://www.apache.org/licenses/LICENSE-2.0
+[License-Image]: https://img.shields.io/badge/license-MIT-blue
+[GoDoc-Url]: https://pkg.go.dev/github.com/adoublef/sdk
+[GoDoc-Image]: https://img.shields.io/badge/GoDoc-reference-007d9c
+
 The **SDK Package** is a lightweight and modular utility library for Golang, designed to provide a set of common functions and tools to kickstart your Golang projects. It's not meant to be an extensive framework but rather a collection of useful helpers that can be used as an SDK to your Golang code.
 
 ## TOC
