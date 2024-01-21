@@ -8,3 +8,9 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.19
 	golang.org/x/sync v0.5.0
 )
+
+require (
+	github.com/go-sql-driver/mysql v1.7.1 // indirect
+	golang.org/x/crypto v0.15.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
+)
