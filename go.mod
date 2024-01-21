@@ -8,7 +8,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.19
 	github.com/minio/minio-go/v7 v7.0.66
 	github.com/testcontainers/testcontainers-go v0.27.0
-	golang.org/x/sync v0.5.0
+	golang.org/x/sync v0.6.0
 )
 
 require (
