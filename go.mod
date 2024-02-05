@@ -5,7 +5,7 @@ go 1.21.3
 require (
 	github.com/maragudk/migrate v0.4.3
 	github.com/matryer/is v1.4.1
-	github.com/mattn/go-sqlite3 v1.14.19
+	github.com/mattn/go-sqlite3 v1.14.22
 	github.com/minio/minio-go/v7 v7.0.66
 	github.com/testcontainers/testcontainers-go v0.27.0
 	golang.org/x/sync v0.6.0
