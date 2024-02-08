@@ -8,7 +8,7 @@ import (
 
 func TestFormatIEC(t *testing.T) {
 	tt := map[string]struct {
-		n    uint32
+		n    uint
 		want string
 	}{
 		"0B": {
