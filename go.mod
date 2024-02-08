@@ -1,6 +1,6 @@
-module github.com/adoublef/sdk
+module go.adoublef.dev/sdk
 
-go 1.21.3
+go 1.22
 
 require (
 	github.com/maragudk/migrate v0.4.3

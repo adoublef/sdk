@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/adoublef/sdk/sql"
+	"go.adoublef.dev/sdk/sql"
 )
 
 // RoundTrip will create a database instance to use with testing

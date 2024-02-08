@@ -5,10 +5,10 @@ import (
 	"io"
 	"testing"
 
-	"github.com/adoublef/sdk/bytest"
-	. "github.com/adoublef/sdk/testcontainers/minio"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
+	"go.adoublef.dev/sdk/bytest"
+	. "go.adoublef.dev/sdk/testcontainers/minio"
 )
 
 func TestContainer(t *testing.T) {

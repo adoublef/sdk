@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/adoublef/sdk/sql"
-	st "github.com/adoublef/sdk/sql/sqltest"
+	"go.adoublef.dev/sdk/sql"
+	st "go.adoublef.dev/sdk/sql/sqltest"
 	"github.com/matryer/is"
 )
 

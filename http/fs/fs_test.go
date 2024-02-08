@@ -4,8 +4,8 @@ import (
 	"embed"
 	"testing"
 
-	"github.com/adoublef/sdk/http/fs"
 	"github.com/matryer/is"
+	"go.adoublef.dev/sdk/http/fs"
 )
 
 //go:embed all:testdata
