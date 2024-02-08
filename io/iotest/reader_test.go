@@ -4,7 +4,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/matryer/is"
+	"go.adoublef.dev/is"
 	"go.adoublef.dev/sdk/io/fs"
 	. "go.adoublef.dev/sdk/io/iotest"
 )

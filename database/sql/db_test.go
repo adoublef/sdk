@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"testing"
 
-	"go.adoublef.dev/sdk/sql"
-	st "go.adoublef.dev/sdk/sql/sqltest"
 	"github.com/matryer/is"
+	"go.adoublef.dev/sdk/database/sql"
+	st "go.adoublef.dev/sdk/database/sql/sqltest"
 )
 
 //go:embed all:*.up.sql
