@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"go.adoublef.dev/is"
-	. "go.adoublef.dev/sdk/fs"
+	. "go.adoublef.dev/sdk/io/fs"
 )
 
 func TestParsePath(t *testing.T) {
