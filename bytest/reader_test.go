@@ -4,8 +4,8 @@ import (
 	"io"
 	"testing"
 
-	"github.com/adoublef/sdk/bytest"
 	"github.com/matryer/is"
+	"go.adoublef.dev/sdk/bytest"
 )
 
 func TestReader(t *testing.T) {

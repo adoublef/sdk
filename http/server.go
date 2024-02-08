@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	timeout = 5 *time.Second
+	timeout = 5 * time.Second
 )
 
 type Server struct {
