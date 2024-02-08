@@ -1,11 +1,12 @@
-package bytest_test
+package iotest_test
 
 import (
 	"io"
 	"testing"
 
 	"github.com/matryer/is"
-	"go.adoublef.dev/sdk/bytest"
+	"go.adoublef.dev/sdk/io/fs"
+	. "go.adoublef.dev/sdk/io/iotest"
 )
 
 func TestReader(t *testing.T) {
@@ -13,13 +14,13 @@ func TestReader(t *testing.T) {
 
 	tt := []struct {
 		name string
-		r    *bytest.Reader
+		r    *Reader
 		n    int
 	}{
 		{
 			name: "1024 Bytes",
-			r:    bytest.NewReader(bytest.KB),
-			n:    bytest.KB,
+			r:    NewReader(fs.KB.Int()),
+			n:    fs.KB.Int(),
 		},
 	}
 
