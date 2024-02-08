@@ -80,8 +80,8 @@ func Dir(s string) string {
 }
 
 var (
-	ErrPathLen0   = errors.New("os: pathname must be provided")
-	ErrPathLen255 = errors.New("os: pathname exceeds 255 characters")
-	ErrPathAbs    = errors.New("os: absolute path not provided")
-	ErrBaseLen0   = errors.New("os: basename must be provided")
+	ErrPathLen0   = errors.New("fs: pathname must be provided")
+	ErrPathLen255 = errors.New("fs: pathname exceeds 255 characters")
+	ErrPathAbs    = errors.New("fs: absolute path not provided")
+	ErrBaseLen0   = errors.New("fs: basename must be provided")
 )
