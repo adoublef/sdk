@@ -9,7 +9,7 @@ import (
 	. "go.adoublef.dev/sdk/io/iotest"
 )
 
-func TestReader(t *testing.T) {
+func TestReader_Read(t *testing.T) {
 	t.Parallel()
 
 	tt := []struct {
