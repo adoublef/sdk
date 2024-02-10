@@ -6,7 +6,7 @@ import (
 	"io"
 	"io/fs"
 	"maps"
-	"net/http"
+	"path/filepath"
 )
 
 // An FS provides access to a file system that produces a safe HTML document templates.
@@ -15,11 +15,9 @@ type FS struct {
 	funcs template.FuncMap
 }
 
-var ErrParseTemplate = errors.New("template: parse template files")
-
 // Parse parses the named files and associates the resulting templates with t
 func (fsys *FS) Parse(filenames ...string) (Template, error) {
-	t, err := template.New(filenames[0]).Funcs(fsys.funcs).ParseFS(fsys.fsys, filenames...)
+	t, err := template.New(filepath.Base(filenames[0])).Funcs(fsys.funcs).ParseFS(fsys.fsys, filenames...)
 	if err != nil {
 		return nil, errors.Join(ErrParseTemplate, err)
 	}
@@ -53,9 +51,6 @@ type Template interface {
 	Execute(wr io.Writer, data any) error
 }
 
-func ExecuteHTTP(w http.ResponseWriter, t Template, data any) {
-	err := t.Execute(w, data)
-	if err != nil {
-		http.Error(w, "unable to render html", http.StatusUnprocessableEntity)
-	}
-}
+var (
+	ErrParseTemplate = errors.New("template: parse template files")
+)
