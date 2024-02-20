@@ -94,7 +94,7 @@ func (rw *response) Flush() {
 	}
 }
 
-// Wrap
+// Wrap http.ResponseWriter into a ResponseWriter.
 func Wrap(w http.ResponseWriter, r *http.Request) ResponseWriter {
 	if rw, ok := w.(ResponseWriter); ok {
 		return rw
