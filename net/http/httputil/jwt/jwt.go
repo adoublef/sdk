@@ -26,7 +26,9 @@ func (k contextKey) String() string {
 	return "jwt: " + k.s
 }
 
+// Parser
 type Parser interface {
+	// Parse
 	Parse(h http.HandlerFunc) http.HandlerFunc
 }
 
@@ -36,7 +38,7 @@ type parser struct {
 	url string
 }
 
-// New [Parser] is returned.
+// New allocates and returns a new [Parser].
 func New(ctx context.Context, endpoint string) (Parser, error) {
 	c := jwk.NewCache(ctx)
 	err := c.Register(endpoint)
