@@ -5,8 +5,10 @@ tasks:
     desc: list all
     cmds:
       - task --list-all
+    silent: true
 
   test:
-    desc: test runner
+    desc: run go test
     cmds:
-      - go test -v -count 1 {{.CLI_ARGS}}
+      - go test -v -count=1 {{.USER_WORKING_DIR}}/{{.CLI_ARGS}}
+    silent: true
