@@ -4,8 +4,11 @@ import (
 	"net/http"
 )
 
+// MethodOverride is a higher order [http.handlerFunc] which allows the client
+// to override a POST request with a PUT, PATCH or DELETE.
+//
+// A search query ("_method") can be used or header ("X-HTTP-Method-Override").
 func MethodOverride(h http.Handler) http.Handler {
-	// https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.httpmethodoverrideextensions.usehttpmethodoverride?view=aspnetcore-8.0
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
 			method := r.URL.Query().Get("_method")
