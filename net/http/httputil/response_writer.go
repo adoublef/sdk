@@ -69,7 +69,6 @@ func (rw *response) WriteHeader(s int) {
 		rw.status = 500
 		return
 	}
-
 	rw.ResponseWriter.WriteHeader(s)
 	rw.status = s
 }
@@ -79,12 +78,10 @@ func (rw *response) Hijack() (net.Conn, *bufio.ReadWriter, error) {
 	if !ok {
 		return nil, nil, ErrHijackUnsupported
 	}
-
 	conn, brw, err := hijacker.Hijack()
 	if err == nil {
 		rw.status = -1
 	}
-
 	return conn, brw, err
 }
 
