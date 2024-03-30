@@ -1,3 +1,7 @@
+// Package date implements types a time-zone-independent
+// representation of time.
+//
+// Use [time.Time] for that purpose if location information is required.
 package date
 
 import (
