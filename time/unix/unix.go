@@ -18,11 +18,11 @@ func (t *Time) Scan(value any) (err error) {
 	case int64:
 		*t = Time(v)
 	case string:
+		layout := time.RFC3339
 		if v[10] == ' ' {
-			*t, err = Parse(time.DateTime, v)
-			return
+			layout = time.DateTime
 		}
-		*t, err = Parse(time.RFC3339, v)
+		*t, err = Parse(layout, v)
 	default:
 		return fmt.Errorf("unix: unsupported type: %T", v)
 	}
