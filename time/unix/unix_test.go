@@ -10,7 +10,7 @@ import (
 )
 
 func Test_Time_Scan(t *testing.T) {
-	t.Run("UnixMS", testRoundTrip(func(db *sql3.DB) {
+	t.Run("UnixMilli", testRoundTrip(func(db *sql3.DB) {
 		is := is.NewRelaxed(t)
 
 		var ut Time
