@@ -45,10 +45,3 @@ func FromTime(t time.Time) Time { return Time(t.UTC().UnixMilli()) }
 
 // Now returns the current time using the RFC3339 format.
 func Now() Time { return FromTime(time.Now()) }
-
-func cut(s string, idx int) (before, after string, found bool) {
-	if len(s) > idx && (s[idx] == 'T' || s[idx] == 't') {
-		return s[:idx], s[idx+1:], true
-	}
-	return s, "", false
-}
