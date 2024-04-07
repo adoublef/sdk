@@ -18,7 +18,14 @@ const (
 	driverName = "sqlite3"
 	// Pragma is a set of default commands used to modify the operation of the SQLite.
 	//
-	//
+	// 	- JOURNAL MODE = WAL
+	// 	- BUSY TIMEOUT = 5000
+	// 	- SYNCHRONOUS = NORMAL
+	// 	- CACHE SIZE = 1000000000
+	// 	- FOREIGN KEYS = TRUE
+	// 	- TXLOCK = IMMEDIATE
+	// 	- TEMP STORE = MEMORY
+	// 	- MMAP SIZE = 3000000000
 	PRAGMA = "_journal_mod=wal&_busy_timeout=5000&_synchronous=normal&_cache_size=1000000000&_foreign_keys=true&_txlock=immediate&_temp_store=memory&_mmap_size=3000000000"
 )
 
