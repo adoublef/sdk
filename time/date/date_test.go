@@ -1,10 +1,12 @@
 package date_test
 
 import (
+	"context"
 	"encoding/json"
 	"testing"
 
 	"go.adoublef.dev/is"
+	"go.adoublef.dev/sdk/database/sql3"
 	. "go.adoublef.dev/sdk/time/date"
 )
 
@@ -62,5 +64,60 @@ func Test_Date_MarshalJSON(t *testing.T) {
 		is.NoErr(json.Unmarshal(p, &b))
 
 		is.Equal(a, b)
+	})
+}
+
+func Test_Date_Scan(t *testing.T) {
+	db, err := sql3.Open(t.TempDir() + "/test.db")
+	if err != nil {
+		t.Fatalf("sql3.Open: %v", err)
+	}
+	t.Cleanup(func() { db.Close() })
+	_, err = db.Exec(context.TODO(), `
+	create table t (id int not null, d text) strict;
+	insert into t (id, d) values (1, '2022-10-18');
+	insert into t (id, d) values (2, null);`)
+	if err != nil {
+		t.Fatalf("(sql3.DB).Exec: %v", err)
+	}
+
+	t.Run("OK", func(t *testing.T) {
+		is := is.NewRelaxed(t)
+		var d Date
+		err = db.QueryRow(context.TODO(), `select d from t where id = 1`).Scan(&d)
+		is.NoErr(err) // sql3.DB).QueryRow
+	})
+
+	t.Run("Null", func(t *testing.T) {
+		is := is.NewRelaxed(t)
+		var d Date
+		err = db.QueryRow(context.TODO(), `select d from t where id = 2`).Scan(&d)
+		is.NoErr(err) // sql3.DB).QueryRow
+	})
+}
+
+func Test_Date_Value(t *testing.T) {
+	db, err := sql3.Open(t.TempDir() + "/test.db")
+	if err != nil {
+		t.Fatalf("sql3.Open: %v", err)
+	}
+	t.Cleanup(func() { db.Close() })
+	_, err = db.Exec(context.TODO(), `
+	create table t (id int not null, d text) strict;`)
+	if err != nil {
+		t.Fatalf("(sql3.DB).Exec: %v", err)
+	}
+
+	t.Run("OK", func(t *testing.T) {
+		is := is.NewRelaxed(t)
+		a := Date{2006, January, 02}
+
+		_, err = db.Exec(context.TODO(), `insert into t (id, d) values (1, ?)`, a)
+		is.NoErr(err) // sql3.DB).Exec
+
+		var b Date
+		err = db.QueryRow(context.TODO(), `select d from t where id = 1`).Scan(&b)
+
+		is.True(a.Compare(b) == 0)
 	})
 }
