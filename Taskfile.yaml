@@ -1,14 +1,21 @@
-version: 3
+version: "3"
 
 tasks:
   default:
-    desc: list all
+    desc: List all
     cmds:
       - task --list-all
     silent: true
 
-  test:
-    desc: run go test
+  tidy:
+    desc: Mod tidy
     cmds:
-      - go test -v -count=1 {{.USER_WORKING_DIR}}/{{.CLI_ARGS}}
+      - go mod tidy
+    silent: true
+
+  test:
+    desc: Run tests
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - go test -v -count=1 {{.CLI_ARGS}}
     silent: true
