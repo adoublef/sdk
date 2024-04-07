@@ -88,11 +88,20 @@ func Test_Date_Scan(t *testing.T) {
 		is.NoErr(err) // sql3.DB).QueryRow
 	})
 
-	t.Run("Null", func(t *testing.T) {
+	t.Run("Zero", func(t *testing.T) {
 		is := is.NewRelaxed(t)
 		var d Date
 		err = db.QueryRow(context.TODO(), `select d from t where id = 2`).Scan(&d)
 		is.NoErr(err) // sql3.DB).QueryRow
+	})
+
+	t.Run("Nil", func(t *testing.T) {
+		is := is.NewRelaxed(t)
+		var d *Date
+		err = db.QueryRow(context.TODO(), `select d from t where id = 2`).Scan(&d)
+		is.NoErr(err) // sql3.DB).QueryRow
+
+		is.Equal(d, nil)
 	})
 }
 
