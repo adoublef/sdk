@@ -5,9 +5,13 @@
 package date
 
 import (
+	"database/sql/driver"
 	"fmt"
+	"log"
 	"time"
 )
+
+const ISO8601 = "2006-01-02"
 
 type Month = time.Month
 
@@ -78,6 +82,17 @@ func (d Date) After(d2 Date) bool {
 	return d2.Before(d)
 }
 
+// Compare compares two [Date] instances. If d is before d2, it returns -1; if d is after d2, it returns +1; if they're the same, it returns 0.
+func (d Date) Compare(d2 Date) int {
+	if d.Before(d2) {
+		return -1
+
+	} else if d.After(d2) {
+		return 1
+	}
+	return 0
+}
+
 // IsZero reports whether date fields are set to their default value.
 func (d Date) IsZero() bool {
 	return (d.Year == 0) && (int(d.Month) == 0) && (d.Day == 0)
@@ -101,12 +116,26 @@ func (d Date) MarshalText() ([]byte, error) {
 }
 
 // Scan
+func (d *Date) Scan(v any) (err error) {
+	switch v := v.(type) {
+	case nil:
+		*d = Date{}
+	case string:
+		*d, err = Parse(v)
+	default:
+		return fmt.Errorf("unsupported Scan, storing driver.Value type %T into type *date.Date", v)
+	}
+	return err
+}
 
 // Value
+func (d Date) Value() (driver.Value, error) {
+	return d.String(), nil
+}
 
 // Parse parses a string in RFC3339 full-date formate and returns the value as a [Date].
 func Parse(s string) (Date, error) {
-	t, err := time.Parse("2006-01-02", s)
+	t, err := time.Parse(time.DateOnly, s)
 	if err != nil {
 		return Date{}, err
 	}
@@ -118,3 +147,8 @@ func DateOf(t time.Time) (d Date) {
 	d.Year, d.Month, d.Day = t.Date()
 	return
 }
+
+// Now returns the current [Date].
+func Now() Date { return DateOf(time.Now()) }
+
+func logf(format string, v ...any) { log.Printf(format, v...) }
