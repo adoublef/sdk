@@ -119,8 +119,8 @@ func (d Date) MarshalText() ([]byte, error) {
 func (d *Date) Scan(v any) (err error) {
 	switch v := v.(type) {
 	case nil:
-		*d = Date{}
 	case string:
+		v, _, _ = cut(v, 10)
 		*d, err = Parse(v)
 	default:
 		return fmt.Errorf("unsupported Scan, storing driver.Value type %T into type *date.Date", v)
