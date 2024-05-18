@@ -3,6 +3,8 @@ package sql3_test
 import (
 	"context"
 	"embed"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/google/uuid"
@@ -18,12 +20,16 @@ func Test_Up(t *testing.T) {
 	t.Run("OK", func(t *testing.T) {
 		is := is.NewRelaxed(t)
 
-		_, err := sqlFS.Up(context.TODO(), t.TempDir()+"/test.db")
+		_, err := sqlFS.Up(context.TODO(), testFilename(t, "test.db"))
 		is.NoErr(err) // (sql3.FS).Up
 	})
 }
 
 func Test_DB_Tx(t *testing.T) {
+	if testing.Short() {
+		t.Skip("this is a long test")
+	}
+
 	t.Run("OK", testRoundTrip(func(db *DB) {
 		is := is.NewRelaxed(t)
 
@@ -34,7 +40,7 @@ func Test_DB_Tx(t *testing.T) {
 
 		for i := range 5_000_000 {
 			rid := uuid.Must(uuid.NewV7())
-			_, err = tx.Exec(`insert into tests (id, counter) values (?, ?)`, rid, i)
+			_, err = tx.Exec(context.TODO(), `insert into tests (id, counter) values (?, ?)`, rid, i)
 			is.NoErr(err) // (sql3.Tx).Exec
 
 			if i%500_000 == 0 {
@@ -63,4 +69,13 @@ func testRoundTrip(f func(*DB)) func(*testing.T) {
 		t.Cleanup(func() { db.Close() })
 		f(db)
 	}
+}
+
+func testFilename(t testing.TB, filename string) string {
+	t.Helper()
+	if os.Getenv("DEBUG") != "1" {
+		return filepath.Join(t.TempDir(), filename)
+	}
+	_ = os.Remove(filename)
+	return filepath.Join(filename)
 }
