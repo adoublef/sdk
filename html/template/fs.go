@@ -49,6 +49,9 @@ func NewFS(fsys fs.FS) *FS {
 type Template interface {
 	// Execute applies a parsed template to the specified data object, writing the output to wr
 	Execute(wr io.Writer, data any) error
+	// ExecuteTemplate applies the template associated with t that has the given
+	// name to the specified data object and writes the output to wr. 
+	ExecuteTemplate(wr io.Writer, name string, data any) error
 }
 
 var (
