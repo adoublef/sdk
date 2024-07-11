@@ -3,8 +3,10 @@ package httputil
 import (
 	"bufio"
 	"errors"
+	"io"
 	"net"
 	"net/http"
+	"sync"
 )
 
 type ResponseWriter interface {
@@ -17,6 +19,8 @@ type ResponseWriter interface {
 	// Size returns the size of the response body.
 	Size() int
 	Unwrap() http.ResponseWriter
+	// Tee allows the caller to write to multiple writers.
+	Tee(w io.Writer)
 }
 
 type response struct {
@@ -24,6 +28,8 @@ type response struct {
 	method string
 	status int
 	size   int
+	mu     sync.Mutex
+	tee    io.Writer
 }
 
 // Size implements ResponseWriter.
