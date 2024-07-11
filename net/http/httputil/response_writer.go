@@ -32,6 +32,13 @@ type response struct {
 	tee    io.Writer
 }
 
+// Tee implements ResponseWriter.
+func (r *response) Tee(w io.Writer) {
+	r.mu.Lock()
+	r.tee = w
+	r.mu.Unlock()
+}
+
 // Size implements ResponseWriter.
 func (rw *response) Size() int {
 	return rw.size
@@ -54,14 +61,22 @@ func (rw *response) Status() int {
 
 // Write implements ResponseWriter.
 // Subtle: this method shadows the method (ResponseWriter).Write of response.ResponseWriter.
-func (rw *response) Write(b []byte) (size int, err error) {
-	if !rw.Written() {
+func (r *response) Write(b []byte) (size int, err error) {
+	if !r.Written() {
 		// The status will be StatusOK if WriteHeader has not been called yet
-		rw.WriteHeader(http.StatusOK)
+		r.WriteHeader(http.StatusOK)
 	}
-	if rw.method != http.MethodHead {
-		size, err = rw.ResponseWriter.Write(b)
-		rw.size += size
+	if r.method != http.MethodHead {
+		size, err = r.ResponseWriter.Write(b)
+		r.mu.Lock()
+		if r.tee != nil {
+			_, err2 := r.tee.Write(b[:size])
+			if err == nil {
+				err = err2
+			}
+		}
+		r.mu.Unlock()
+		r.size += size
 	}
 	return size, err
 }
@@ -105,7 +120,7 @@ func Wrap(w http.ResponseWriter, r *http.Request) ResponseWriter {
 	if rw, ok := w.(ResponseWriter); ok {
 		return rw
 	}
-	return &response{w, r.Method, 0, 0}
+	return &response{ResponseWriter: w, method: r.Method}
 }
 
 var (
