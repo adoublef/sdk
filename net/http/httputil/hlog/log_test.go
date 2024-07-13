@@ -16,8 +16,8 @@ import (
 func Test_LogHandler(t *testing.T) {
 	t.Run("OK", func(t *testing.T) {
 		var (
-			c, buf, ctx = newClient(t)
-			is          = is.NewRelaxed(t)
+			c, _, ctx = newClient(t)
+			is        = is.NewRelaxed(t)
 		)
 
 		// three request
@@ -27,9 +27,6 @@ func Test_LogHandler(t *testing.T) {
 
 		_, err = c.Do(r)
 		is.NoErr(err)
-
-		// check all the fields (somehow)
-		t.Logf("%s\n", buf)
 	})
 }
 
