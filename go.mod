@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/maragudk/migrate v0.4.3
-	github.com/mattn/go-sqlite3 v1.14.22
+	github.com/mattn/go-sqlite3 v1.14.23
 	go.adoublef.dev/is v0.1.2
 	golang.org/x/sync v0.7.0
 )
